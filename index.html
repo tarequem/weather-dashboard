@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <!--section for city searches-->
+    <section id="search-board">
+      <div class="container">
+        <div class="row">
+          <h2>Search for a City:</h2>
+          <label for="city">Search for a city</label>
+          <!--JS/Jquery will fill in the placeholder text (font color will be grey)-->
+          <input type="text" placeholder="" name="city" id="city" class="form-input" />
+          <button></button>
+        </div>
+        <div id="cities">
+          <!--jquery will append searched cities here, will create button elements, which will then search the text content of those buttons in the fetch function-->
+          <ul id="recent-cities"></ul>
+        </div>
+      </div>
+    </section>
+    <!--section for today's weather-->
+    <section id="current-day" class="weather-data">
+        <!--generated city name, date, and weather graphic-->
+        <h2 id="city-day0" class=""></h2>
+          <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+        <ul id="weather-info-day0" class="flex-column">
+
+        </ul>
+    </section>
+
+    <!--section for the 5 day forecast-->
+    <section>
+      <h2>5 Day Forecast:</h2>
+      <container class="container">
+        <div id="next-five-days" class="row weather-data">
+          <!--In future I can have JQuery generate the HTML entirely, but do so only after having a working model-->
+          
+          <!--JQuery will generate information for the 5 boxes with the weather information of the next 5 days of the searched city-->
+          <div class="col bg-primary mx-5">
+            <!--generated city name, date, and weather graphic-->
+            <h2 id="city-day1" class=""></h2>
+            <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+            <ul id="weather-info-day1">
+
+            </ul>
+          </div>
+          <div class="col bg-primary mx-5">
+            <!--generated city name, date, and weather graphic-->
+            <h2 id="city-day2" class=""></h2>
+            <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+            <ul id="weather-info-day2">
+
+            </ul>
+          </div>
+          <div class="col bg-primary mx-5">
+            <!--generated city name, date, and weather graphic-->
+            <h2 id="city-day3" class=""></h2>
+            <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+            <ul id="weather-info-day3">
+
+            </ul>
+          </div>
+          <div class="col bg-primary mx-5">
+            <!--generated city name, date, and weather graphic-->
+            <h2 id="city-day4" class=""></h2>
+            <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+            <ul id="weather-info-day4">
+
+            </ul>
+          </div>
+          <div class="col bg-primary mx-5">
+            <!--generated city name, date, and weather graphic-->
+            <h2 id="city-day5" class=""></h2>
+            <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
+            <ul id="weather-info-day5">
+
+            </ul>
+          </div>
+        </div>
+      </container>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
