@@ -1,3 +1,60 @@
 .weather-data {
-    
+
+}
+
+.title {
+    font-size: 50px;
+    color: aliceblue;
+    background: rgb(0,95,255);
+    background: linear-gradient(90deg, rgba(0,95,255,1) 0%, rgba(99,48,195,1) 52%, rgba(79,0,175,1) 100%);
+}
+
+.btn {
+  font-size: 1.3rem;
+  text-decoration:none;
+  padding: 6px 5px;
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: var(--light-dark);
+  box-shadow: 3px 3px var(--dark);
+  transform: translate(-1px, -1px);
+}
+
+.btn:hover {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  transform: translate(0, 0);
+  box-shadow: 2px 2px var(--dark);
+}
+
+.btn-inline {
+  display: inline;
+}
+
+.btn-back {
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: var(--light-dark);
+  box-shadow: 3px 3px var(--secondary);
+  transform: translate(-1px, -1px);
+  display: inline-block;
+  width: auto;
+  margin-top: 20px;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.btn-back:hover {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  transform: translate(0, 0);
+  box-shadow: 2px 2px var(--dark);
 }
