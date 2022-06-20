@@ -1,5 +1,9 @@
-.weather-data {
+.weather-day0 {
+  display: block;
+}
 
+.hide {
+  display: none;
 }
 
 .title {

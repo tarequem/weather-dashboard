@@ -44,63 +44,26 @@
       </section>
 
       <!--section for weather information-->
-      <section class="row flex-column col-9">
+      <section id="weather-section" class="row flex-column col-9 hide">
         <!--current weather-->
-        <div id="current-weather" class="weather-day0 weather-dataflex-column border h-50">
+        <div id="current-weather" class="weather-day0 border flex-column">
           <!--generated city name, date, and weather graphic-->
           <h2 class="city"></h2>
           <h2 id="current-day"></h2>
-          <p class="description"></p>
-          <p class="temperature"></p>
+          <div id="icon"></div>
+          <p>Temperature: <span id="temp"></span> °C</p>
+          <p>Wind: <span id="wind"></span> KPH</p>
+          <p>Humidity: <span id="hum"></span>%</p>
+          <p>UV Index: <span id="uv"></span></p>
         </div>
 
         <!--weather for the 5 day forecast-->
         <div>
           <h2>5 Day Forecast:</h2>
-          <!--JQuery will fill in container with html-->
           <div id="five-day-container" class="five-container">
             <div id="next-five-days" class="row weather-data">
-              <!--JQuery will generate information for the 5 boxes with the weather information of the next 5 days of the searched city-->
-              <div class="col bg-primary mx-5">
-                <!--generated city name, date, and weather graphic-->
-                <h2 id="city-day1" class=""></h2>
-                <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
-                <ul id="weather-info-day1">
+              <!--generate 5 day forecast-->
 
-                </ul>
-              </div>
-              <div class="col bg-primary mx-5">
-                <!--generated city name, date, and weather graphic-->
-                <h2 id="city-day2" class=""></h2>
-                <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
-                <ul id="weather-info-day2">
-
-                </ul>
-              </div>
-              <div class="col bg-primary mx-5">
-                <!--generated city name, date, and weather graphic-->
-                <h2 id="city-day3" class=""></h2>
-                <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
-                <ul id="weather-info-day3">
-
-                </ul>
-              </div>
-              <div class="col bg-primary mx-5">
-                <!--generated city name, date, and weather graphic-->
-                <h2 id="city-day4" class=""></h2>
-                <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
-                <ul id="weather-info-day4">
-
-                </ul>
-              </div>
-              <div class="col bg-primary mx-5">
-                <!--generated city name, date, and weather graphic-->
-                <h2 id="city-day5" class=""></h2>
-                <!--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + -->
-                <ul id="weather-info-day5">
-
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -112,6 +75,7 @@
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
+
 
 <!--
 
