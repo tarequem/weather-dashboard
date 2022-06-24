@@ -89,21 +89,26 @@ $(document).ready(function () {
                 var uvData = data['current']['uvi']
                 uvEl.innerHTML = uvData;
                 console.log(data)
+
+                //colour coding for UV Index
+                for (var i = 0; i <= 11; i++){
+                    if (uvData < 3) {
+                        uvEl.classList.add("lowUV");
+                    } else if (uvData > 3 && uvData < 6) {
+                        uvEl.classList.add("moderateUV");
+                    } else if (uvData > 6 && uvData < 8) {
+                        uvEl.classList.add("highUV");
+                    } else if (uvData > 8 && uvData < 11) {
+                        uvEl.classList.add("veryhighUV");
+                    } else if (uvData > 11) {
+                        uvEl.classList.add("extremeUV");
+                    }
+                }
             })
+
+
         })
 
-        //fetch(forecastUrl)
-           // .then(function(response) {
-            //    if (response.ok) {
-             //       console.log(response);
-             //       response.json().then(function(data) {
-             //           console.log(data);
-                        //displayForecast(date_iso, wind, humidity, temp);
-             //       });
-               // } else {
-               //     alert("Please enter a valid city name.");
-               // }
-            //});
     }}, "#submit")
 
     var displayWeather = function (date_iso, wind, humidity, temp) {

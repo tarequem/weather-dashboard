@@ -62,3 +62,23 @@
   transform: translate(0, 0);
   box-shadow: 2px 2px var(--dark);
 }
+
+.extremeUV {
+  background-color: purple;
+}
+
+.veryhighUV {
+  background-color: red;
+}
+
+.highUV {
+  background-color: orange;
+}
+
+.moderateUV {
+  background-color: yellow;
+}
+
+.lowUV {
+  background-color: green;
+}
