@@ -44,47 +44,66 @@ $(document).ready(function () {
         
         var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
 
-        var forecastUrl = "https:api.openweathermap.org/data/2.5/forecast?q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
+        //var forecastUrl = "https:api.openweathermap.org/data/2.5/forecast?q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
 
         e.preventDefault()
-
+        
+        //elements current day
         var tempEl = document.querySelector("#temp");
         var windEl = document.querySelector("#wind");
         var humEl = document.querySelector("#hum");
-        //var uvEl = document.querySelector("#uv");
+        var uvEl = document.querySelector("#uv");
         var iconEl = document.querySelector("#icon");
 
         fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
+            //data current day
             var tempData = data['main']['temp'];
             var windData = data['wind']['speed'];
             var humData = data['main']['humidity'];
-            var icon = data['weather'][0]['icon']
+            //var uvDada = data['']
+            var icon = data['weather'][0]['icon'];
 
             //fetch weather icon
             var iconUrl = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon + "@2x.png' />"
 
-            //fill elements with fetched weather data
+            //fill elements with fetched weather data current day
             iconEl.innerHTML = iconUrl;
             humEl.innerHTML = humData;
             tempEl.innerHTML = tempData;
             windEl.innerHTML = windData;
+
+
             console.log(data);
+
+            var coordinates = {
+                lat: data['coord']['lat'],
+                lon: data['coord']['lon']
+            };
+
+            var oneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
+            fetch(oneCall)
+            .then(response => response.json())
+            .then(data => {
+                var uvData = data['current']['uvi']
+                uvEl.innerHTML = uvData;
+                console.log(data)
+            })
         })
 
-        fetch(forecastUrl)
-            .then(function(response) {
-                if (response.ok) {
-                    console.log(response);
-                    response.json().then(function(data) {
-                        console.log(data);
+        //fetch(forecastUrl)
+           // .then(function(response) {
+            //    if (response.ok) {
+             //       console.log(response);
+             //       response.json().then(function(data) {
+             //           console.log(data);
                         //displayForecast(date_iso, wind, humidity, temp);
-                    });
-                } else {
-                    alert("Please enter a valid city name.");
-                }
-            });
+             //       });
+               // } else {
+               //     alert("Please enter a valid city name.");
+               // }
+            //});
     }}, "#submit")
 
     var displayWeather = function (date_iso, wind, humidity, temp) {
