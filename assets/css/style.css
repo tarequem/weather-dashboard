@@ -13,6 +13,12 @@
     background: linear-gradient(90deg, rgba(0,95,255,1) 0%, rgba(99,48,195,1) 52%, rgba(79,0,175,1) 100%);
 }
 
+.daily {
+  background-color: aqua;
+  padding: 5px;
+  margin: 5px;
+}
+
 .btn {
   font-size: 1.3rem;
   text-decoration:none;

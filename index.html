@@ -57,19 +57,48 @@
           <p>UV Index: <span id="uv"></span></p>
         </div>
 
-        <div>
-          <p>Temperature: <span id="temp1"></span> °C</p>
-          <p>Wind: <span id="wind1"></span> KPH</p>
-          <p>Humidity: <span id="hum1"></span>%</p>
-          <p>UV Index: <span id="uv1"></span></p>
-        </div>
+
 
         <!--weather for the 5 day forecast-->
         <div>
           <h2>5 Day Forecast:</h2>
           <div id="five-day-container" class="five-container">
-            <div id="next-five-days" class="row weather-data">
+            <div id="next-five-days" class="row weather-daily">
               <!--generate 5 day forecast-->
+              <div class="daily">
+                <div id="icon1"></div>
+                <p>Temperature: <span id="temp1"></span> °C</p>
+                <p>Wind: <span id="wind1"></span> KPH</p>
+                <p>Humidity: <span id="hum1"></span>%</p>
+              </div>
+
+              <div class="daily">
+                <div id="icon2"></div>
+                <p>Temperature: <span id="temp2"></span> °C</p>
+                <p>Wind: <span id="wind2"></span> KPH</p>
+                <p>Humidity: <span id="hum2"></span>%</p>
+              </div>
+
+              <div class="daily">
+                <div id="icon3"></div>
+                <p>Temperature: <span id="temp3"></span> °C</p>
+                <p>Wind: <span id="wind3"></span> KPH</p>
+                <p>Humidity: <span id="hum3"></span>%</p>
+              </div>
+
+              <div class="daily">
+                <div id="icon4"></div>
+                <p>Temperature: <span id="temp4"></span> °C</p>
+                <p>Wind: <span id="wind4"></span> KPH</p>
+                <p>Humidity: <span id="hum4"></span>%</p>
+              </div>
+
+              <div class="daily">
+                <div id="icon5"></div>
+                <p>Temperature: <span id="temp5"></span> °C</p>
+                <p>Wind: <span id="wind5"></span> KPH</p>
+                <p>Humidity: <span id="hum5"></span>%</p>
+              </div>
 
             </div>
           </div>
@@ -82,27 +111,3 @@
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
-
-
-<!--
-
-                <button class="col mb-2">this is a test</button>
-              <button class="col mb-2">this is a test</button>
-              <button class="col mb-2">this is a test</button>
-              <button class="col mb-2">this is a test</button>
-              <button class="col mb-2">this is a test</button>
-this is how it should look like once data has been entered 
-      <!/--generated city name, date, and weather graphic-/->
-      <h2 id="city-day0" class=""></h2>
-      <!/--JQuery will fill this with li's with the description of; "Tempt:" + "Wind" + "Humidity:" + "UV Index" + --/>
-    <ul id="weather-info-day0" class="flex-column">
-
-    </ul>
-
-
-
-
-
-
-
--->

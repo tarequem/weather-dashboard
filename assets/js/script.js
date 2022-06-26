@@ -1,18 +1,3 @@
-//AS A traveler
-//I WANT to see the weather outlook for multiple cities
-//SO THAT I can plan a trip accordingly
-//remember: DO THIS SMALL STEP BY SMALL STEP. 
-
-//GIVEN a weather dashboard with form inputs
-//WHEN I search for a city
-//THEN I am presented with current and future conditions for that city and that city is added to the search history
-    //Search function.
-    //Button that will take text value from input field and retrieve weather data of that city
-    //If text is invalid/not a city, user will be alerted to enter a valid city.
-    //Most recent search should be saved in text area, but colour of text should be grey. 
-    //Function that fills in the gaps of the url in the requestUrl variable ( https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key} ) https://api.openweathermap.org/data/2.5/onecall?lat=" + textLat + "&lon=" + textLon "&exclude=" + textPart + "&appid={API key}"
-
-
 //waits for page to be ready
 $(document).ready(function () {  
     var currentDate = document.querySelector("#current-day");
@@ -29,11 +14,6 @@ $(document).ready(function () {
     var cityDesc = document.querySelector(".description");
     var cityTemp = document.querySelector(".temperature");
 
-    //var apiUrl = "https:api.openweathermap.org/data/2.5/weather?q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
-
-    //var iconcode = a.weather[0].icon;
-    //var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
     //clicking search button will fetch api data
     $(document).on({
         "click": function (e) {
@@ -44,8 +24,6 @@ $(document).ready(function () {
         
         var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
 
-        //var forecastUrl = "https:api.openweathermap.org/data/2.5/forecast?q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
-
         e.preventDefault()
         
         //elements current day
@@ -55,6 +33,33 @@ $(document).ready(function () {
         var uvEl = document.querySelector("#uv");
         var iconEl = document.querySelector("#icon");
 
+        //defines five day forecast html elements
+        var tempEl1 = document.querySelector("#temp1");
+        var windEl1 = document.querySelector("#wind1");
+        var humEl1 = document.querySelector("#hum1");
+        var iconEl1 = document.querySelector("#icon1");
+
+        var tempEl2 = document.querySelector("#temp2");
+        var windEl2 = document.querySelector("#wind2");
+        var humEl2 = document.querySelector("#hum2");
+        var iconEl2 = document.querySelector("#icon2");
+
+        var tempEl3 = document.querySelector("#temp3");
+        var windEl3 = document.querySelector("#wind3");
+        var humEl3 = document.querySelector("#hum3");
+        var iconEl3 = document.querySelector("#icon3");
+
+        var tempEl4 = document.querySelector("#temp4");
+        var windEl4 = document.querySelector("#wind4");
+        var humEl4 = document.querySelector("#hum4");
+        var iconEl4 = document.querySelector("#icon4");
+
+        var tempEl5 = document.querySelector("#temp5");
+        var windEl5 = document.querySelector("#wind5");
+        var humEl5 = document.querySelector("#hum5");
+        var iconEl5 = document.querySelector("#icon5");
+
+        //fetches data for current weather
         fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -77,12 +82,14 @@ $(document).ready(function () {
 
             console.log(data);
 
+            //defines coordinates for searched city
             var coordinates = {
                 lat: data['coord']['lat'],
                 lon: data['coord']['lon']
             };
 
-            var oneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
+            //fetches data for uv and for 5 day forecast
+            var oneCall = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
             fetch(oneCall)
             .then(response => response.json())
             .then(data => {
@@ -104,54 +111,71 @@ $(document).ready(function () {
                         uvEl.classList.add("extremeUV");
                     }
                 }
+
+                //fetches data for each day of 5 day forecast, fills in html with data. 
+                //day 1
+                var tempData1 = data['daily']['1']['temp']['max'];
+                var windData1 = data['daily']['1']['wind_speed'];
+                var humData1 = data['daily']['1']['humidity'];
+                var icon1 = data['daily']['1']['weather']['0']['icon'];
+                var iconUrl1 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon1 + "@2x.png' />"
+
+                tempEl1.innerHTML = tempData1;
+                windEl1.innerHTML = windData1;
+                humEl1.innerHTML = humData1;
+                iconEl1.innerHTML = iconUrl1;
+
+                //day 2
+                var tempData2 = data['daily']['2']['temp']['max'];
+                var windData2 = data['daily']['2']['wind_speed'];
+                var humData2 = data['daily']['2']['humidity'];
+                var icon2 = data['daily']['2']['weather']['0']['icon'];
+                var iconUrl2 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon2 + "@2x.png' />"
+
+                tempEl2.innerHTML = tempData2;
+                windEl2.innerHTML = windData2;
+                humEl2.innerHTML = humData2;
+                iconEl2.innerHTML = iconUrl2;
+
+                //day 3
+                var tempData3 = data['daily']['3']['temp']['max'];
+                var windData3 = data['daily']['3']['wind_speed'];
+                var humData3 = data['daily']['3']['humidity'];
+                var icon3 = data['daily']['3']['weather']['0']['icon'];
+                var iconUrl3 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon3 + "@2x.png' />"
+
+                tempEl3.innerHTML = tempData3;
+                windEl3.innerHTML = windData3;
+                humEl3.innerHTML = humData3;
+                iconEl3.innerHTML = iconUrl3;
+
+                //day 4
+                var tempData4 = data['daily']['4']['temp']['max'];
+                var windData4 = data['daily']['4']['wind_speed'];
+                var humData4 = data['daily']['4']['humidity'];
+                var icon4 = data['daily']['4']['weather']['0']['icon'];
+                var iconUrl4 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon4 + "@2x.png' />"
+
+                tempEl4.innerHTML = tempData4;
+                windEl4.innerHTML = windData4;
+                humEl4.innerHTML = humData4;
+                iconEl4.innerHTML = iconUrl4;
+
+                //day 5
+                var tempData5 = data['daily']['5']['temp']['max'];
+                var windData5 = data['daily']['5']['wind_speed'];
+                var humData5 = data['daily']['5']['humidity'];
+                var icon5 = data['daily']['5']['weather']['0']['icon'];
+                var iconUrl5 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon5 + "@2x.png' />"
+
+                tempEl5.innerHTML = tempData5;
+                windEl5.innerHTML = windData5;
+                humEl5.innerHTML = humData5;
+                iconEl5.innerHTML = iconUrl5;
             })
 
 
         })
 
     }}, "#submit")
-
-    var displayWeather = function (date_iso, wind, humidity, temp) {
-        weatherSearchTerm.textContent = temp;
-
-        for (var i = 0; i < temp.length; i++) {
-            var tempature = temp[i].main;
-            var tempEl = document.createElement("p");
-            
-        }
-    }
 });
-
-
-//WHEN I view current weather conditions for that city
-//THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-//WHEN I view future weather conditions for that city
-//THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity   
-    //Fetch function that generates and appends li elements with fetched weather information. 
-    //After website is functional, refactor so that JQuery generates all HTML content. 
-
-//WHEN I view the UV index
-//THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-    //colour coding.
-    //For loop that will create a range of numbers to represent UV index. If-then statement that checks for loop ranges and colorur codes accordingly.
-
-    //code template
-    /* but for UV index ranges
-    function colourCode() {
-        for (var i = 9; i <= 17; i++) {
-            
-            if (hour==i) {
-                $(`#text-area${i}`).addClass("present");
-            } else if (hour > i){
-                $(`#text-area${i}`).addClass("past");
-            } else if (hour < i) {
-                $(`#text-area${i}`).addClass("future");
-            } 
-        }
-    }
-*/
-//WHEN I click on a city in the search history
-//THEN I am again presented with current and future conditions for that city.
-    //Each time a valid search is made, the text content will be made into the text content of a button and appended to recent-cities div.
-    //Generates buttons with click events.
-    //Function for each button will use text content to fetch data of that city.
