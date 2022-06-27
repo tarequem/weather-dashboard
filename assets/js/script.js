@@ -74,7 +74,7 @@ $(document).ready(function () {
         //initiates fetch for previous searches
         searchCityEl.onclick = function() {
             weatherEl.classList.remove("hide");
-            var apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" + userHistory[i] + "&appid=220ff34db8df0fb665355972020ec55c";
+            var apiUrl = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?&units=metric&q=" + userHistory[i] + "&appid=220ff34db8df0fb665355972020ec55c";
             fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
@@ -104,7 +104,7 @@ $(document).ready(function () {
                 };
 
                 //fetches data for uv and for 5 day forecast
-                var oneCall = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
+                var oneCall = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?&units=metric&lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
                 fetch(oneCall)
                 .then(response => response.json())
                 .then(data => {
@@ -210,7 +210,7 @@ $(document).ready(function () {
         userHistory.push(cityValue);
         localStorage.setItem("search", JSON.stringify(userHistory));
             //APIs for weather
-            var apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
+            var apiUrl = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
             //fetches data for current weather
             fetch(apiUrl)
             .then(response => response.json())
@@ -239,7 +239,7 @@ $(document).ready(function () {
                 };
 
                 //fetches data for uv and for 5 day forecast
-                var oneCall = "https://api.openweathermap.org/data/2.5/onecall?&units=metric&lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
+                var oneCall = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?&units=metric&lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&appid=220ff34db8df0fb665355972020ec55c"
                 fetch(oneCall)
                 .then(response => response.json())
                 .then(data => {
