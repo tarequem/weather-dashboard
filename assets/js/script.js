@@ -1,12 +1,35 @@
+//refactor code so that there is less code. Incorporate more JQuery. 
+
 //waits for page to be ready
 $(document).ready(function () {  
-    var currentDate = document.querySelector("#current-day");
-    var currentTime = moment();
-    currentDate.textContent = currentTime.format("DD MMMM, YYYY.")
     var cityList = document.querySelector("#city-buttons");
     var weatherEl = document.querySelector("#weather-section");
     var userHistory = JSON.parse(localStorage.getItem("search")) || [];
 
+    //Displays dates
+    var currentDate = document.querySelector("#current-day");
+    var currentTime = moment();
+    currentDate.textContent = currentTime.format("DD MMMM, YYYY.");
+
+    var dateEl1 = document.querySelector("#date1");
+    var dayOne = moment().add(1,'days');
+    dateEl1.textContent = dayOne.format("DD MMMM, YYYY.");
+
+    var dateEl2 = document.querySelector("#date2");
+    var dayTwo = moment().add(2,'days');
+    dateEl2.textContent = dayTwo.format("DD MMMM, YYYY.");
+
+    var dateEl3 = document.querySelector("#date3");
+    var dayThree = moment().add(3,'days');
+    dateEl3.textContent = dayThree.format("DD MMMM, YYYY.");
+
+    var dateEl4 = document.querySelector("#date4");
+    var dayFour = moment().add(4,'days');
+    dateEl4.textContent = dayFour.format("DD MMMM, YYYY.");
+
+    var dateEl5 = document.querySelector("#date5");
+    var dayFive = moment().add(5,'days');
+    dateEl5.textContent = dayFive.format("DD MMMM, YYYY.");
 
     //elements for current day
     var tempEl = document.querySelector("#temp");
@@ -44,6 +67,7 @@ $(document).ready(function () {
     //creates and stores searches as button elements
     for (let i = 0; i < userHistory.length; i++) {
         var searchCityEl = document.createElement("button");
+        searchCityEl.classList.add("btn");
         searchCityEl.innerHTML = userHistory[i];
         cityList.appendChild(searchCityEl);
 
@@ -109,7 +133,7 @@ $(document).ready(function () {
                     var windData1 = data['daily']['1']['wind_speed'];
                     var humData1 = data['daily']['1']['humidity'];
                     var icon1 = data['daily']['1']['weather']['0']['icon'];
-                    var iconUrl1 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon1 + "@2x.png' />"
+                    var iconUrl1 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon1 + "@2x.png' />";
 
                     tempEl1.innerHTML = tempData1;
                     windEl1.innerHTML = windData1;
@@ -121,7 +145,7 @@ $(document).ready(function () {
                     var windData2 = data['daily']['2']['wind_speed'];
                     var humData2 = data['daily']['2']['humidity'];
                     var icon2 = data['daily']['2']['weather']['0']['icon'];
-                    var iconUrl2 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon2 + "@2x.png' />"
+                    var iconUrl2 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon2 + "@2x.png' />";
 
                     tempEl2.innerHTML = tempData2;
                     windEl2.innerHTML = windData2;
@@ -133,7 +157,7 @@ $(document).ready(function () {
                     var windData3 = data['daily']['3']['wind_speed'];
                     var humData3 = data['daily']['3']['humidity'];
                     var icon3 = data['daily']['3']['weather']['0']['icon'];
-                    var iconUrl3 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon3 + "@2x.png' />"
+                    var iconUrl3 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon3 + "@2x.png' />";
 
                     tempEl3.innerHTML = tempData3;
                     windEl3.innerHTML = windData3;
@@ -145,7 +169,7 @@ $(document).ready(function () {
                     var windData4 = data['daily']['4']['wind_speed'];
                     var humData4 = data['daily']['4']['humidity'];
                     var icon4 = data['daily']['4']['weather']['0']['icon'];
-                    var iconUrl4 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon4 + "@2x.png' />"
+                    var iconUrl4 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon4 + "@2x.png' />";
 
                     tempEl4.innerHTML = tempData4;
                     windEl4.innerHTML = windData4;
@@ -157,7 +181,7 @@ $(document).ready(function () {
                     var windData5 = data['daily']['5']['wind_speed'];
                     var humData5 = data['daily']['5']['humidity'];
                     var icon5 = data['daily']['5']['weather']['0']['icon'];
-                    var iconUrl5 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon5 + "@2x.png' />"
+                    var iconUrl5 = "<img class='weather-icon'  src= 'https://openweathermap.org/img/wn/" + icon5 + "@2x.png' />";
 
                     tempEl5.innerHTML = tempData5;
                     windEl5.innerHTML = windData5;
@@ -172,19 +196,19 @@ $(document).ready(function () {
 
     //fetches data for city inputed 
     $(document).on({
-        "click": function (e) {       
-        
+        "click": function (e) {    
+        var cityValue = document.getElementById("input-value").value;    
+        if (cityValue === "") {
+            alert("Please enter a valid city name.")
+        } else {
         e.preventDefault()
 
         //prior to click, current-weather should be hidden so there are no empty values
         weatherEl.classList.remove("hide");
 
-
+        //stores search data for previous search buttons
         userHistory.push(cityValue);
         localStorage.setItem("search", JSON.stringify(userHistory));
-        
-        var cityValue = document.getElementById("input-value").value; 
-        
             //APIs for weather
             var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
             //fetches data for current weather
@@ -195,7 +219,6 @@ $(document).ready(function () {
                 var tempData = data['main']['temp'];
                 var windData = data['wind']['speed'];
                 var humData = data['main']['humidity'];
-                //var uvDada = data['']
                 var icon = data['weather'][0]['icon'];
 
                 //fetch weather icon
@@ -206,7 +229,6 @@ $(document).ready(function () {
                 humEl.innerHTML = humData;
                 tempEl.innerHTML = tempData;
                 windEl.innerHTML = windData;
-
 
                 console.log(data);
 
@@ -305,6 +327,6 @@ $(document).ready(function () {
                 
             })
 
-    }}, "#submit")
+    }}}, "#submit")
 
 });

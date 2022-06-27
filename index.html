@@ -27,17 +27,17 @@
     </header>
     <main class="row">
       <!--section for city searches-->
-      <section id="search-board"  class="flex-column col-3">
+      <section id="search-board"  class="flex-row col-3">
         <div class="container">
-          <div id="search-form" class="flex-column">
+          <div id="search-form" class="flex-row">
             <h2>Search for a City:</h2>
             <!--JS/Jquery will fill in the placeholder text (font color will be grey)-->
             <input type="text" id="input-value" class="input-value" />
-            <button id="submit" class="col search-btn" value="Submit" class="button">Search</button>
+            <button id="submit" class="col btn" value="Submit" class="button">Search</button>
             <hr class="my-12"/>
           </div>
           <!--jquery will append searched cities here, will create button elements, which will then search the text content of those buttons in the fetch function-->
-          <div id="city-buttons" class="container flex-column">
+          <div id="city-buttons" class="container search-history">
 
           </div>
         </div>

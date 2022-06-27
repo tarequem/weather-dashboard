@@ -23,15 +23,15 @@
   font-size: 1.3rem;
   text-decoration:none;
   padding: 6px 5px;
-  width: 100%;
+  width: 50%;
   display: block;
   margin: 5px 0;
   border-radius: var(--border-radius);
-  color: var(--primary);
+  color: white;
   border: none;
   outline: none;
-  background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--dark);
+  background-color: blue;
+  box-shadow: 3px 3px;
   transform: translate(-1px, -1px);
 }
 
