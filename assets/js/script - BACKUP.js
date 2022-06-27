@@ -8,50 +8,48 @@ $(document).ready(function () {
     var userHistory = JSON.parse(localStorage.getItem("search")) || [];
 
 
-    //elements for current day
-    var tempEl = document.querySelector("#temp");
-    var windEl = document.querySelector("#wind");
-    var humEl = document.querySelector("#hum");
-    var uvEl = document.querySelector("#uv");
-    var iconEl = document.querySelector("#icon");
-
-    //defines five day forecast html elements
-    var tempEl1 = document.querySelector("#temp1");
-    var windEl1 = document.querySelector("#wind1");
-    var humEl1 = document.querySelector("#hum1");
-    var iconEl1 = document.querySelector("#icon1");
-
-    var tempEl2 = document.querySelector("#temp2");
-    var windEl2 = document.querySelector("#wind2");
-    var humEl2 = document.querySelector("#hum2");
-    var iconEl2 = document.querySelector("#icon2");
-
-    var tempEl3 = document.querySelector("#temp3");
-    var windEl3 = document.querySelector("#wind3");
-    var humEl3 = document.querySelector("#hum3");
-    var iconEl3 = document.querySelector("#icon3");
-
-    var tempEl4 = document.querySelector("#temp4");
-    var windEl4 = document.querySelector("#wind4");
-    var humEl4 = document.querySelector("#hum4");
-    var iconEl4 = document.querySelector("#icon4");
-
-    var tempEl5 = document.querySelector("#temp5");
-    var windEl5 = document.querySelector("#wind5");
-    var humEl5 = document.querySelector("#hum5");
-    var iconEl5 = document.querySelector("#icon5");
-
-    //creates and stores searches as button elements
     for (let i = 0; i < userHistory.length; i++) {
         var searchCityEl = document.createElement("button");
+        cityList.appendChild(searchCityEl);
         searchCityEl.innerHTML = userHistory[i];
+    }
+
+    //initiates click function for previous searches 
+    searchCityEl.onclick = function() {
+        getWeather();
+    }
+
+    //clicking search button will fetch api data
+    $(document).on({
+        "click": function (e) {       
+        
+        e.preventDefault()
+
+        //prior to click, current-weather should be hidden so there are no empty values
+        weatherEl.classList.remove("hide");
+
+        //fills cityList with previous searches as functionable buttons
+        var cityValue = document.getElementById("input-value").value;     
+        var searchCityEl = document.createElement("button");
+        searchCityEl.innerHTML = cityValue;
         cityList.appendChild(searchCityEl);
 
-        //initiates fetch for previous searches
+        userHistory.push(cityValue);
+        localStorage.setItem("search", JSON.stringify(userHistory));
+
+        //initiates click function for previous searches 
         searchCityEl.onclick = function() {
-            weatherEl.classList.remove("hide");
-            var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + userHistory[i] + "&appid=220ff34db8df0fb665355972020ec55c";
-            fetch(apiUrl)
+            getWeather();
+        }
+        
+        //APIs for weather
+        var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
+        var apiUrlButton = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + searchCityEl.value + "&appid=220ff34db8df0fb665355972020ec55c";
+
+        //fetch function for previous searches
+        var getWeather = function() {
+            //fetches data for current weather
+            fetch(apiUrl || apiUrlButton)
             .then(response => response.json())
             .then(data => {
                 //data current day
@@ -168,25 +166,40 @@ $(document).ready(function () {
                 
             })
         }
-    }
-
-    //fetches data for city inputed 
-    $(document).on({
-        "click": function (e) {       
         
-        e.preventDefault()
+        //elements for current day
+        var tempEl = document.querySelector("#temp");
+        var windEl = document.querySelector("#wind");
+        var humEl = document.querySelector("#hum");
+        var uvEl = document.querySelector("#uv");
+        var iconEl = document.querySelector("#icon");
 
-        //prior to click, current-weather should be hidden so there are no empty values
-        weatherEl.classList.remove("hide");
+        //defines five day forecast html elements
+        var tempEl1 = document.querySelector("#temp1");
+        var windEl1 = document.querySelector("#wind1");
+        var humEl1 = document.querySelector("#hum1");
+        var iconEl1 = document.querySelector("#icon1");
 
+        var tempEl2 = document.querySelector("#temp2");
+        var windEl2 = document.querySelector("#wind2");
+        var humEl2 = document.querySelector("#hum2");
+        var iconEl2 = document.querySelector("#icon2");
 
-        userHistory.push(cityValue);
-        localStorage.setItem("search", JSON.stringify(userHistory));
-        
-        var cityValue = document.getElementById("input-value").value; 
-        
-            //APIs for weather
-            var apiUrl = "https:api.openweathermap.org/data/2.5/weather?&units=metric&q=" + cityValue + "&appid=220ff34db8df0fb665355972020ec55c";
+        var tempEl3 = document.querySelector("#temp3");
+        var windEl3 = document.querySelector("#wind3");
+        var humEl3 = document.querySelector("#hum3");
+        var iconEl3 = document.querySelector("#icon3");
+
+        var tempEl4 = document.querySelector("#temp4");
+        var windEl4 = document.querySelector("#wind4");
+        var humEl4 = document.querySelector("#hum4");
+        var iconEl4 = document.querySelector("#icon4");
+
+        var tempEl5 = document.querySelector("#temp5");
+        var windEl5 = document.querySelector("#wind5");
+        var humEl5 = document.querySelector("#hum5");
+        var iconEl5 = document.querySelector("#icon5");
+
             //fetches data for current weather
             fetch(apiUrl)
             .then(response => response.json())
